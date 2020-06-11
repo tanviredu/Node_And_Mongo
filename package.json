@@ -1,0 +1,22 @@
+{
+  "name": "node_and_mongo",
+  "version": "1.0.0",
+  "description": "Node_And_Mongo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanviredu/Node_And_Mongo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tanviredu/Node_And_Mongo/issues"
+  },
+  "homepage": "https://github.com/tanviredu/Node_And_Mongo#readme",
+  "dependencies": {
+    "mongodb": "^3.4.0"
+  }
+}
