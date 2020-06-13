@@ -1,4 +1,5 @@
 const express = require('express');
+const fsPromises = require('fs').promises;
 const fs = require('fs');
 const datafile = 'server/data/clothing.json';
 const router = express.Router();
@@ -62,26 +63,31 @@ router.route('/')
 
 
 
+//
+//function getClothingData(){
+//    return new Promise((resolve,reject)=>{
+//        // read the file
+//        fs.readFile(datafile,'utf-8',(err,data)=>{
+//            
+//                if(err){
+//                    reject(err);
+//                }else{
+//                    let clothingData = JSON.parse(data);
+//                    resolve(clothingData);
+//                }
+//            
+//        })
+//        
+//    })
+//}
+//
 
-function getClothingData(){
-    return new Promise((resolve,reject)=>{
-        // read the file
-        fs.readFile(datafile,'utf-8',(err,data)=>{
-            
-                if(err){
-                    reject(err);
-                }else{
-                    let clothingData = JSON.parse(data);
-                    resolve(clothingData);
-                }
-            
-        })
-        
-    })
+async function getClothingData(){
+    let rawData = await fsPromises.readFile(datafile,'utf-8');
+    let clothingData = JSON.parse(rawData);
+    console.log(clothingData);
+    return clothingData;
 }
-
-
-
 
 
 
