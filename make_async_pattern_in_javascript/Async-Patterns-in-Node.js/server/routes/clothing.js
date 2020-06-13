@@ -11,15 +11,29 @@ router.route('/')
 // this is the calback cunction
 // so we need to make sure that the function 
 // that we write accept it
-getClothingData((err,data)=>{
-    if(err){
-        console.log(err);
-    }else{
+//getClothingData((err,data)=>{
+//    if(err){
+//        console.log(err);
+//    }else{
+//        res.send(data);
+//    }
+//    
+//    
+//})  
+    
+    
+    
+    getClothingData().then((data)=>{
         res.send(data);
-    }
+        
+    }).catch((error)=>{
+        console.log("something is wrong");
+        
+    });
+        
+        
     
     
-})    
     
 });
     
@@ -28,19 +42,52 @@ getClothingData((err,data)=>{
 // and this function has two parameter
 // err and data
 
-function getClothingData(callback){
-    fs.readFile(datafile,'utf-8',(err,data)=>{
-        if(err){
-            //console.log(err);
-            callback(err,null);// so we send the callback function the error
-        }else{
-            let  clothingData = JSON.parse(data);
-            callback(null,data);
-        }
+//function getClothingData(callback){
+//    fs.readFile(datafile,'utf-8',(err,data)=>{
+//        if(err){
+//            //console.log(err);
+//            callback(err,null);// so we send the callback function the error
+//        }else{
+//            let  clothingData = JSON.parse(data);
+//            callback(null,data);
+//        }
+//        
+//    })
+//}
+//    
+// so now we are sending the data with callback function
+// and it is asynchronus
+
+
+
+
+
+
+function getClothingData(){
+    return new Promise((resolve,reject)=>{
+        // read the file
+        fs.readFile(datafile,'utf-8',(err,data)=>{
+            
+                if(err){
+                    reject(err);
+                }else{
+                    let clothingData = JSON.parse(data);
+                    resolve(clothingData);
+                }
+            
+        })
         
     })
 }
-    
-// so now we are sending the data with callback function
-// and it is asynchronus
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;

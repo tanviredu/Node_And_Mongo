@@ -30,6 +30,27 @@
           clothing_div.innerHTML = formatted_data;
         });
     </script>
+    
+    <script>
+        // try to fetch data from an api
+        fetch('https://my-json-server.typicode.com/typicode/demo/posts')
+        .then((res)=>{
+            res.json();    
+        
+        }).then((data)=>{
+            
+            // it will give  a list of string
+            let string_data = JSON.stringify(data);
+            let formatted_data = '';
+            data.forEach((element)=>{
+                formatted_data += '<div><h3>' + element.id + ' - $' + element.title + '</h3></div>';
+            });
+        });
+        let clothing_div = document.getElementById('clothing-list');
+          clothing_div.innerHTML = formatted_data;
+        });
+        
+    </script>
 
 </head>
 <body>
@@ -73,12 +94,24 @@
     </section>
 
     <!-- product list goes here -->
+<!--
     <div class="container">
       <h1>Clothing</h1>
       <div id=clothing-list></div>
     </div>
 
     </div>
+    
+-->
+    
+    
+    <div class="container">
+      <h1>Clothing</h1>
+      <div id=clothing-list></div>
+    </div>
+
+    </div>
+
 
     <!-- FOOTER -->
     <footer class="d-flex justify-content-stretch">
