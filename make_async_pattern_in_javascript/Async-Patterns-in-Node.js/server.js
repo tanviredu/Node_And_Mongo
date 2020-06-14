@@ -10,13 +10,15 @@ const app = express();
 
 app.use(favicon(path.join(__dirname, 'dist/favicon.ico')));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use('/api/clothing', clothing);
 app.use('/api/errors', errors);
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 app.set('port', process.env.PORT || 3000);
