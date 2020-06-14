@@ -1,17 +1,28 @@
 import express from "express";
+import favicon from 'serve-favicon';
+import path from "path";
 import data from "./data/data.json";
+
+
 const app = express();
 const PORT = 3000;
 /* FETCH STATIC FILE FROM THE SERVER */
 // start with the public folder
 app.use(express.static('public'));
 // adding the images folder
-
 // get the images localhost:3000/images/<image_name>;
 app.use('/images',express.static('images'))
 app.use('/css',express.static('css'))
+// __dirname will print the current dir
+app.use(favicon(path.join(__dirname,'public\\fav\\','favicon.ico')));
+
+
 // YOU CAN ADD MULTIPLE STATIC
 // FOLDER TO YOUR EXPRESS app
+
+// thisn is forthe favicon
+
+
 
 // USED FOR THE JSON CONVERSION
 app.use(express.json());
@@ -30,6 +41,7 @@ app.use(express.json());
 // wnen you  add the next you can do the further job
 var server_hit_count = 0;
 app.get('/',(req,res,next)=>{
+        console.log(path.join(__dirname,'public\\fav\\','favicon.ico'));
         res.send(`A get request with / route on port ${PORT} `);
         next();
 },(req,res)=>{
@@ -38,7 +50,7 @@ app.get('/',(req,res,next)=>{
     server_hit_count++;
     console.log(`[+] total server hit :  ${server_hit_count}`);
     // now you can redirect to a url
-    res.redirect('https://localhost:3000/getData');
+    //res.redirect('https://localhost:3000/getData');
     
 
 }
